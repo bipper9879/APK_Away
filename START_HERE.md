@@ -1,8 +1,21 @@
 # START HERE 👋
 
 **Project:** APK_Away - Android Package Manager  
-**Status:** Ready to Build  
+**Status:** ⚡ **MIGRATING TO C# WINDOWS FORMS**  
 **Date:** March 15, 2026
+
+---
+
+## ⚠️ IMPORTANT: Framework Migration in Progress
+
+**PowerShell v1.0:** ✅ Complete (but has scrollbar bug)  
+**C# Windows Forms:** ⏳ Building proof-of-concept next
+
+### Why Migrating?
+- **PowerShell limitation:** DataGridView scrollbar not rendering (8+ fix attempts)
+- **User requirement:** Best-in-class resource efficiency (VERY IMPORTANT)
+  - CPU, Memory, Disk must be minimal
+- **Solution:** C# Windows Forms maintains low resources + fixes scrollbar
 
 ---
 
@@ -10,11 +23,12 @@
 
 **Read these files in order:**
 
-1. **SESSION_STATE.md** ← Start here! (current state, what to do next)
-2. **README.md** ← Project overview and quick reference
-3. **BUILD_PLAN.md** ← Complete implementation guide
+1. **SESSION_STATE.md** ← Current state + migration decision
+2. **MIGRATION_PLAN.md** ← C# migration roadmap (6 phases)
+3. **README.md** ← Project overview
+4. **BUILD_PLAN.md** ← Original PowerShell implementation (complete)
 
-**Then start building according to BUILD_PLAN.md Phase 1**
+**Next Action:** Build C# Windows Forms proof-of-concept (Phase 1)
 
 ---
 

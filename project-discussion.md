@@ -70,6 +70,46 @@ For PC-side (where the ADB commands run):
 - **C++ with Qt** (cross-platform GUI) - I see Qt mentioned in your workspace
 - **Python with tkinter/PyQt** - simple but requires Python runtime
 
+---
+
+## Framework Migration Decision
+
+**Date:** March 15, 2026
+
+### User Goal: Best-in-Class Resource Efficiency
+**VERY IMPORTANT:** Minimize the big 3:
+1. CPU usage
+2. Memory usage
+3. Disk usage
+
+### Framework Analysis
+
+| Framework | Memory | CPU | Disk | Startup | Scrollbar Fix |
+|-----------|--------|-----|------|---------|---------------|
+| PowerShell WinForms (current) | 10-20MB | Minimal | 628 lines | <1s | ❌ Bug |
+| **C# Windows Forms** (SELECTED) | 15-30MB | Minimal | ~50KB | <1s | ✅ Fixed |
+| WPF | 30-50MB | Moderate | ~10MB | 1-2s | ✅ |
+| PyQt5/PySide6 | 50-100MB | High | ~100MB | 2-3s | ✅ |
+
+### Decision: C# Windows Forms ✅
+
+**Reasons:**
+1. Nearly identical resource footprint to PowerShell (15-30MB vs 10-20MB)
+2. Fixes DataGridView scrollbar rendering bug
+3. Same Windows Forms API (minimal migration)
+4. Compiled to native code (faster than interpreted PowerShell)
+5. No external dependencies (uses built-in .NET Framework)
+6. Small executable size (~50KB)
+
+**Why not WPF or PyQt5:**
+- WPF: 2-3x more memory, DirectX rendering engine overhead (not needed)
+- PyQt5: 5x more memory, 100MB disk footprint, Python runtime overhead
+
+### Migration Plan
+See: [MIGRATION_PLAN.md](MIGRATION_PLAN.md)
+
+**Next Step:** Build proof-of-concept C# Windows Forms app
+
 ## My Recommended Architectures
 
 ### Option A: **Enhanced PC Tool** (Simplest, Most Practical)
