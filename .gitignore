@@ -1,0 +1,25 @@
+# Logs
+Logs/
+*.log
+
+# Configuration (may contain personal paths)
+apk-away-config.json
+
+# Backup APKs (large files)
+*.apk
+
+# PowerShell temporary files
+*.ps1~
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Python cache (if we add Python scripts later)
+__pycache__/
+*.pyc
+
+# Temporary files
+*.tmp
+*.bak
+~$*.xlsx
