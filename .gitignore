@@ -23,3 +23,20 @@ __pycache__/
 *.tmp
 *.bak
 ~$*.xlsx
+
+# C# / .NET build artifacts
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json

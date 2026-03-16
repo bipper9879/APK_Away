@@ -234,3 +234,122 @@ I've saved this conversation as a Markdown file instead of .docx because:
 3. Or copy/paste into Microsoft Word and save as .docx
 
 The file location: `C:\Users\Dad\Workspace\Projects\APK_Away\project-discussion.md`
+
+---
+
+## C# Migration Session - March 16, 2026
+
+### Session Overview
+**Goal:** Complete C# Windows Forms proof-of-concept (Phase 1)  
+**Primary Objective:** Fix DataGridView scrollbar bug that exists in PowerShell version  
+**Status:** ✅ COMPLETE
+
+### Key Accomplishments
+
+1. **Scrollbar Bug Fix** ✅
+   - User confirmed: "the scroll bar is visible" after testing C# version
+   - PRIMARY MIGRATION GOAL ACHIEVED
+   - Root cause: PowerShell Windows Forms rendering limitation
+
+2. **UI Enhancements**
+   - Fixed column header visual bug (turning blue on cell click)
+     - Solution: `EnableHeadersVisualStyles = false`
+   - Added two checkbox columns: "Backup First" and "Remove"
+   - Configured column widths (65px for checkboxes)
+   - Column ordering: Checkboxes first, then text columns
+   - Column headers centered
+
+3. **Context Menu Implementation**
+   - Right-click on PackageName, Label, or Path columns
+   - Options: Copy, Search on Internet
+   - Opens default browser with Google search
+
+4. **Bottom Panel Restoration**
+   - Progress bar with real-time updates
+   - Log output with timestamp format: `[HH:mm:ss]`
+   - Panel height: 180px (expanded from 50px)
+   - Console font: Consolas 8pt
+
+5. **Button Consolidation**
+   - Removed separate Remove/Backup buttons from top panel
+   - Added single **Execute** button in bottom panel
+   - Execute processes both backup and removal in phases:
+     - Phase 1: Backup all packages marked "Backup First"
+     - Phase 2: Remove all packages marked "Remove"
+
+6. **Smart Confirmation Dialogs**
+   - Backup confirmation: Shows count
+   - Remove confirmation: 
+     - Package count
+     - Risk level warnings (⚠ HIGH RISK / MEDIUM RISK)
+     - Backup status (✓ with backup / ✗ WITHOUT backup)
+     - Mixed status if some have backup, some don't
+
+7. **Bulk Selection Features**
+   - **Select All Backup** button - Checks all "Backup First" checkboxes
+   - **Clear All** button - Unchecks both columns for all packages
+
+8. **Icon and Branding**
+   - Custom application icon (AppIcon.ico)
+   - Logo display in top panel center (App Away.png)
+   - Attempted full-app translucent watermark (reverted - didn't work as expected)
+
+### Technical Details
+
+**Memory Usage:** 33.8MB (target was <30MB, but acceptable)  
+**Executable Size:** 17.5KB (excellent)  
+**Startup Time:** <1 second  
+**Framework:** .NET 8.0 Windows Desktop (net8.0-windows)
+
+**Project Structure:**
+```
+src/APKAway/
+├── APKAway.csproj
+├── Program.cs
+├── MainForm.cs
+├── MainForm.Designer.cs
+├── Models/
+│   └── PackageInfo.cs (Selected, BackupFirst, PackageName, Label, RiskLevel, Category, Description, Path)
+├── Services/
+│   └── DemoDataService.cs (25 mock packages)
+└── AppIcon.ico
+```
+
+### Bug Fixes Applied
+
+1. **Column Header Blue Highlight**
+   - Issue: Headers turning blue when cell selected
+   - Fix: Set `EnableHeadersVisualStyles = false` + explicit `SelectionBackColor`
+
+2. **Checkbox Not Editable**
+   - Issue: Checkboxes were read-only
+   - Fix: Changed `dataGridView1.ReadOnly = false`, set per-column ReadOnly
+
+3. **Context Menu on Wrong Columns**
+   - Issue: Menu appeared on all cells
+   - Fix: Added `CellMouseClick` event handler filtering by `DataPropertyName`
+
+4. **Column Width Auto-Sizing Conflict**
+   - Issue: App wouldn't start after setting widths
+   - Fix: Changed Designer `AutoSizeColumnsMode` from Fill to None
+
+5. **Icon Loading Crash**
+   - Issue: Malformed ICO file caused unhandled exception
+   - Fix: Added try/catch around icon loading (optional feature)
+
+### User Feedback Pattern Observed
+**Principle:** "Ask what is the simplest possible change first"  
+- User prefers minimal diffs over architectural changes
+- Incremental fixes tested after each change
+- This approach successfully debugged multiple issues
+
+### Next Steps (Phase 2)
+- ADB integration for real device scanning
+- Excel import (FE_APP_LIST.xlsx - 534 packages)
+- Real backup functionality (`adb pull`)
+- Real removal functionality (`adb shell pm uninstall --user 0`)
+- Configuration persistence (JSON)
+
+**Phase 1 Completion Time:** ~1 session with iterative refinements  
+**User Satisfaction:** High - scrollbar fix validated, UI matching PowerShell version
+

@@ -23,10 +23,14 @@
 
 **Read these files in order:**
 
-1. **SESSION_STATE.md** ← Current state + migration decision
-2. **MIGRATION_PLAN.md** ← C# migration roadmap (6 phases)
-3. **README.md** ← Project overview
-4. **BUILD_PLAN.md** ← Original PowerShell implementation (complete)
+0. **C:\Users\Dad\OneDrive\Workspace\MyAIBuddy\history.md** ← Full workspace history (REQUIRED)
+1. **.vscode/settings.json** ← Terminal configuration (REQUIRED - read BEFORE using terminals)
+2. **SESSION_STATE.md** ← Current state + migration decision
+3. **MIGRATION_PLAN.md** ← C# migration roadmap (6 phases)
+4. **README.md** ← Project overview
+5. **BUILD_PLAN.md** ← Original PowerShell implementation (complete)
+
+**CRITICAL:** Always read `.vscode/settings.json` BEFORE running any terminal commands to ensure correct PowerShell version (pwsh.exe, not powershell.exe). See history.md "VS Code Terminal Settings Issue" for details.
 
 **Next Action:** Build C# Windows Forms proof-of-concept (Phase 1)
 

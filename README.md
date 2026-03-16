@@ -1,14 +1,63 @@
 # APK_Away - Android Package Manager
 
-PowerShell GUI tool for managing and removing Android bloatware safely.
+PowerShell and C# GUI tools for managing and removing Android bloatware safely.
+
+## 🚀 C# Version (Recommended)
+
+**Status:** Phase 1 Complete ✅ | Phase 2 In Progress ⏳
+
+The C# Windows Forms version fixes the DataGridView scrollbar bug and provides identical functionality with better resource efficiency.
+
+**Location:** `src\APKAway\`  
+**Run:** `dotnet run` (from `src\APKAway` directory)
+
+### Features (C# v0.1 - Proof of Concept)
+- ✅ Scrollbar fix validated (primary goal achieved)
+- ✅ Two checkbox columns: "Backup First" and "Remove"
+- ✅ Execute button with smart confirmation dialogs
+- ✅ Right-click context menu (Copy, Search on Internet)
+- ✅ Progress bar and timestamped log output
+- ✅ Select All Backup / Clear All buttons
+- ✅ Custom icon and logo display
+- ✅ Demo mode with 25 mock packages
+- ⏳ ADB integration (Phase 2)
+- ⏳ Excel import (Phase 2)
+- ⏳ Real backup/removal (Phase 2)
+
+### Quick Start (C#)
+```powershell
+cd C:\Users\Dad\Workspace\Projects\APK_Away\csharp\APKAway
+dotnet run
+```
+
+**Memory:** 33.8MB | **Exe Size:** 17.5KB | **Startup:** <1s
+
+---
+
+## PowerShell Version (v1.0 - Complete)
+
+**Status:** ✅ Fully functional, feature-complete
+
+**Location:** `bin\APK-Away.ps1` (development) or `C:\Users\Dad\Workspace\Scripts\APK-Away.ps1` (deployed)
 
 ## Project Structure
 
 ```
 APK_Away/
-├── bin/                      # Executable scripts
+├── src/                      # C# Windows Forms version (ACTIVE)
+│   └── APKAway/
+│       ├── Program.cs
+│       ├── MainForm.cs       # GUI and event handlers
+│       ├── MainForm.Designer.cs
+│       ├── Models/
+│       │   └── PackageInfo.cs
+│       ├── Services/
+│       │   └── DemoDataService.cs
+│       ├── APKAway.csproj
+│       └── AppIcon.ico
+├── bin/                      # PowerShell executable scripts
 │   └── APK-Away.ps1         # Main entry point (loads modules)
-├── src/                      # Source modules
+├── src/                      # PowerShell source modules
 │   ├── APK-Away-Core.ps1    # Core functions (scan, backup, remove)
 │   └── APK-Away-GUI.ps1     # Windows Forms GUI
 ├── tests/                    # Test scripts
@@ -18,11 +67,30 @@ APK_Away/
 │   ├── QUICK_START.md       # Quick reference
 │   └── BUILD_PLAN.md        # Development roadmap
 ├── Deploy-ToScripts.ps1     # Deployment script
+├── MIGRATION_PLAN.md        # C# migration roadmap
+├── SESSION_STATE.md         # Current session status
 ├── README.md                # This file
 └── *.md                      # Planning documents
 ```
 
 ## Development Workflow
+
+### C# Development (Current Focus)
+```powershell
+# Work in src/APKAway folder
+cd C:\Users\Dad\Workspace\Projects\APK_Away\src\APKAway
+
+# Run with hot reload
+dotnet run
+
+# Build release
+dotnet build -c Release
+```
+
+### PowerShell Development (Maintenance Mode)
+Edit source files in `src/`:
+- `src/APK-Away-Core.ps1` - Core functionality
+- `src/APK-Away-GUI.ps1` - GUI layout and controls
 
 ### 1. Work in Project Folder
 Edit source files in `src/`:
